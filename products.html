@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackHole – Products</title>
+
+    <!-- Import du style principal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR (optionnelle si tu veux la même que l’index) -->
+    <header>
+        <a href="index.html" class="nav-btn"><img src="icons/home.png" alt="Home"></a>
+        <a href="products.html" class="nav-btn"><img src="icons/cart.png" alt="Cart"></a>
+        <a href="gear.html" class="nav-btn">
+    <img src="icons/gear.png" alt="Settings">
+</a>
+
+    </header>
+
+    <!-- PAGE PRODUITS -->
+    <section class="products">
+        <h1 class="products-title">OUR PRODUCTS</h1>
+
+        <div class="products-grid">
+
+            <!-- PRODUCT CARD 1 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <h2>BlackHole External</h2>
+                    <span class="status-dot"></span>
+                </div>
+
+                <p class="product-desc">
+                    Undetected External Cheat<br>
+                    Updated & Secure
+                </p>
+
+                <div class="product-footer">
+                    <span class="product-price">$19.99</span>
+                    <a href="blackhole-external.html" class="product-btn">VIEW</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT CARD 2 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <h2>BlackHole Executor</h2>
+                    <span class="status-dot"></span>
+                </div>
+
+                <p class="product-desc">
+                    Premium Executor<br>
+                    Ultra Smooth & Safe
+                </p>
+
+                <div class="product-footer">
+                    <span class="product-price">$29.99</span>
+                    <a href="#" class="product-btn">VIEW</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEPARATOR -->
+<div class="reviews-separator"></div>
+
+<!-- REVIEWS SECTION -->
+<section class="reviews">
+    <h2 class="reviews-title">REVIEWS</h2>
+
+    <div class="review-box">
+        <p id="review-text">Loading reviews...</p>
+    </div>
+</section>
+
+
+<!-- USER REVIEW INPUT -->
+<div class="review-input-box">
+    <h3>Leave a Review</h3>
+
+    <textarea id="user-review" placeholder="Write your review here..."></textarea>
+
+    <button id="submit-review">SUBMIT</button>
+</div>
+
+
+
+
+<script src="js/reviews.js"></script>
+
+
+
+
+
+</body>
+</html>

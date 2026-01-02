@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackHole</title>
+
+    <!-- Lien vers ton fichier CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="space-lines"></canvas>
+
+
+    <!-- NAVBAR -->
+    <header>
+        <button class="nav-btn"><img src="icons/home.png" alt="Home"></button>
+       <a href="products.html" class="nav-btn">
+    <img src="icons/cart.png" alt="Cart">
+</a>
+
+        <a href="gear.html" class="nav-btn">
+    <img src="icons/gear.png" alt="Settings">
+</a>
+
+
+<div class="account-container">
+    <button id="account-btn" class="account-btn">Account</button>
+
+    <div id="account-menu" class="account-menu">
+        <a href="dashboard.html">DASHBOARD</a>
+        <a href="#" id="logout-btn">LOGOUT</a>
+    </div>
+</div>
+
+
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+
+            <!-- TITRE ANIMÉ -->
+            <div class="title-rotator">
+                <span class="text blackhole" data-text="BlackHole">BlackHole</span>
+                <span class="text nolan" data-text="UD External">UD External</span>
+            </div>
+
+            <p>The Undetected External<br>For The Community</p>
+           <a href="products.html" class="btn">CHECK OUR PRODUCT</a>
+        </div>
+
+        <div class="hero-right">
+            <div class="preview-wrapper">
+                <img src="preview/menu preview.png" alt="Preview">
+            </div>
+        </div>
+    </section>
+
+    <!-- CURSOR AURA -->
+    <script src="js/cursor.js"></script>
+    <div id="cursor-aura"></div>
+<script src="js/space-lines.js"></script>
+
+
+
+<!-- FOOTER STATUS -->
+<div class="footer-status">
+    <div class="status-arrow">▼</div>
+    <div class="status-label">STATUS</div>
+
+    <div class="status-indicator">
+        <span class="dot"></span>
+        <span class="status-text">Update and Undetectable</span>
+    </div>
+</div>
+
+
+
+
+
+<script>
+// Vérifier si l'utilisateur est connecté
+const token = localStorage.getItem("token");
+const accountBtn = document.getElementById("account-btn");
+const accountMenu = document.getElementById("account-menu");
+
+// Si connecté → récupérer le username depuis le token
+if (token) {
+    try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        accountBtn.textContent = payload.username || "Account";
+    } catch {
+        accountBtn.textContent = "Account";
+    }
+} else {
+    accountBtn.textContent = "Account";
+}
+
+// Si NON connecté → clic = redirection vers Register
+accountBtn.addEventListener("click", () => {
+    if (!token) {
+        window.location.href = "gear.html"; // page register
+    } else {
+        // Toggle du menu
+        accountMenu.style.display =
+            accountMenu.style.display === "flex" ? "none" : "flex";
+    }
+});
+
+// Logout
+document.getElementById("logout-btn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+});
+
+// Fermer le menu si on clique ailleurs
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".account-container")) {
+        accountMenu.style.display = "none";
+    }
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackHole External – Product</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <a href="index.html" class="nav-btn"><img src="icons/home.png" alt="Home"></a>
+        <a href="products.html" class="nav-btn"><img src="icons/cart.png" alt="Cart"></a>
+        <a href="gear.html" class="nav-btn"><img src="icons/gear.png" alt="Settings"></a>
+    </header>
+
+<section class="product-section">
+
+    <div class="product-container">
+
+        <!-- LEFT : IMAGE SLIDER -->
+        <div class="product-slider">
+
+            <div class="slides">
+                <img src="preview/menu preview.png" class="slide active">
+                <img src="preview/2.png" class="slide">
+                <img src="preview/3.png" class="slide">
+            </div>
+
+            <div class="slider-controls">
+                <button class="prev-btn">‹</button>
+                <button class="next-btn">›</button>
+            </div>
+
+        </div>
+
+        <!-- RIGHT : PRODUCT INFO -->
+        <div class="product-info">
+
+            <h1 class="product-title">BlackHole External</h1>
+
+            <p class="product-description">
+                BlackHole External est un outil externe premium offrant stabilité, performance et une interface moderne.
+                Conçu pour une expérience fluide, sécurisée et optimisée.
+            </p>
+
+            <div class="separator"></div>
+
+            <!-- DURATION SELECTOR -->
+            <div class="duration-selector">
+
+                <div class="duration-option" data-price="4.99">1 Day</div>
+                <div class="duration-option" data-price="14.99">1 Week</div>
+                <div class="duration-option" data-price="39.99">1 Month</div>
+                <div class="duration-option" data-price="120.99">Lifetime</div>
+
+            </div>
+
+            <h2 class="product-price" id="price-display">4.99$</h2>
+
+            <button id="buy-btn" class="product-btn">ACHETER</button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    <script>
+        document.getElementById("buy-btn").addEventListener("click", () => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                alert("Vous devez être connecté pour acheter.");
+                window.location.href = "gear.html";
+                return;
+            }
+
+            // Ici tu feras l’intégration KeyAuth plus tard
+            alert("Système d'achat en préparation...");
+        });
+    </script>
+
+
+
+<script>
+/* SLIDER */
+const slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+}
+
+document.querySelector(".next-btn").onclick = () => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+};
+
+document.querySelector(".prev-btn").onclick = () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+};
+
+// Auto-slide
+setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}, 4000);
+
+/* DURATION SELECTOR */
+const options = document.querySelectorAll(".duration-option");
+const priceDisplay = document.getElementById("price-display");
+
+options.forEach(option => {
+    option.addEventListener("click", () => {
+        options.forEach(o => o.classList.remove("active"));
+        option.classList.add("active");
+
+        const price = option.getAttribute("data-price");
+        priceDisplay.textContent = price + "$";
+    });
+});
+
+// Default selected
+options[0].classList.add("active");
+
+/* BUY BUTTON */
+document.getElementById("buy-btn").addEventListener("click", () => {
+    const selected = document.querySelector(".duration-option.active");
+    const duration = selected.textContent;
+    const price = selected.getAttribute("data-price");
+
+    alert("Achat : " + duration + " (" + price + "$)");
+});
+</script>
+
+
+
+
+</body>
+</html>
